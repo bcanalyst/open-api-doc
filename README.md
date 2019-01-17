@@ -250,3 +250,83 @@ erc20
     }
 ]
 ```
+
+### btc地址详情信息
+
+```
+url: {host}/api/v1/btc/address_info
+method:GET 
+```
+
+**上传参数**
+
+- address // 地址
+
+**返回示例**
+
+```
+{
+    "address": "3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r",
+    "balance": "138660.869751",
+    "outQuantity": 3160859.11268557,
+    "inQuantity": 3299519.98243679,
+    "maxQuantity": 0,
+    "maxTransactionHash": "",
+    "outTxnCount": 973,
+    "inTxnCount": 5604,
+    "txnCount": 5602,
+    "firstTransactionTime": 1483619655,
+    "lastTransactionTime": 1547626916
+}
+```
+
+### eth地址详情信息
+
+```
+url: {host}/api/v1/eth/address_info
+method:GET 
+```
+
+**上传参数**
+
+- address // 地址
+
+**返回示例**
+
+```
+{
+    "balance": "2033491.7041312056245936160000000000",
+    "firstTransactionTime": 1513586453,
+    "lastTransactionTime": 1546545718
+}
+```
+
+### 活跃度
+
+```
+url: {host}/api/v1/coin/active
+method:GET 
+```
+
+**上传参数**
+
+- contract // 有三种选择：btc，eth，合约（erc20合约，例如：0x05f4a42e251f2d52b8ed15e9fedaacfcef1fad27）
+
+**返回示例**
+
+```
+[
+    {
+        "txnCount": "133398.832736",
+        "newAddressCount": 136,
+        "activeAddressCount": 944,
+        "timestamp": 1545091200
+    },
+    {
+        "txnCount": "228045.661960",
+        "newAddressCount": 143,
+        "activeAddressCount": 976,
+        "timestamp": 1545177600
+    }
+]
+```
