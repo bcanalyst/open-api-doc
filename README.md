@@ -196,4 +196,57 @@ method:GET
     } // ico信息
 }
 ```
- 
+
+### 富豪榜
+
+```
+url: {host}/api/v1/balance/rank
+method:GET 
+```
+
+**上传参数**
+
+- page // 页码数（从1开始）
+- rowsPerPage // 每页条数
+- contract // 有三种选择：btc，eth，合约（erc20合约，例如：0x05f4a42e251f2d52b8ed15e9fedaacfcef1fad27）
+
+**注：目前btc只提供前十名，若contract为btc的话，page和rowsPerPage是选填项**
+
+**返回示例**
+
+btc
+```
+[
+    {
+        "rank": 1,
+        "address": "0xde5a57b9ba909c332cb7be7133ec29e228fb0286",
+        "volume": "3206810811.220588200000000000000000000000"
+    }
+]
+```
+
+eth
+```
+[
+    {
+        "rank": 1, // 排名
+        "address": "0xde5a57b9ba909c332cb7be7133ec29e228fb0286", // 地址
+        "volume": "3206810811.220588200000000000000000000000", // 持有量
+        "monthTxnCount": 28, // 30天交易次数
+        "proportion": 0.25450879454131653 // 占比
+    }
+]
+```
+
+erc20
+```
+[
+    {
+        "rank": 1,
+        "address": "0xde5a57b9ba909c332cb7be7133ec29e228fb0286",
+        "volume": "3206810811.220588200000000000000000000000",
+        "monthTxnCount": 28,
+        "proportion": 0.25450879454131653
+    }
+]
+```
