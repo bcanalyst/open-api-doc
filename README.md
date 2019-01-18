@@ -2,7 +2,7 @@
 
 ## HOST
 
-https://www.midu.com
+https://api.open.midu.com
 
 ## 返回数据结构体
 
