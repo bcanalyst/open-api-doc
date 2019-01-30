@@ -1,5 +1,10 @@
 # Midu Open Api Platform
 
+todo：
+header code error状态
+返回结构体描述
+ip做限制
+
 ## HOST
 
 https://api.open.midu.com
@@ -14,7 +19,7 @@ https://api.open.midu.com
 }
 ```
 
-- 每个接口返回的数据都是上述结构。code为0代表请求成功。以下接口都会省略掉上述结构，直接返回data字段。
+- 每个接口返回的数据都是上述结构。code为0代表请求成功。
 
 ## 币列表
 
@@ -266,17 +271,17 @@ method:GET
 
 ```
 {
-    "address": "3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r",
-    "balance": "138660.869751",
-    "outQuantity": 3160859.11268557,
-    "inQuantity": 3299519.98243679,
-    "maxQuantity": 0,
-    "maxTransactionHash": "",
-    "outTxnCount": 973,
-    "inTxnCount": 5604,
-    "txnCount": 5602,
-    "firstTransactionTime": 1483619655,
-    "lastTransactionTime": 1547626916
+    "address": "3D2oetdNuZUqQHPJmcMDDHYoqkyNVsFk9r", // 地址
+    "balance": "138660.869751", // 余额
+    "outQuantity": 3160859.11268557, // 总发送
+    "inQuantity": 3299519.98243679, // 总接收
+    "maxQuantity": 0, // 最大额交易
+    "maxTransactionHash": "", // 最大额交易哈希
+    "outTxnCount": 973, // 总发送交易笔数
+    "inTxnCount": 5604, // 总接收交易笔数
+    "txnCount": 5602, // 总交易笔数
+    "firstTransactionTime": 1483619655, // 第一次交易时间戳
+    "lastTransactionTime": 1547626916 // 最后一次交易时间戳
 }
 ```
 
@@ -295,9 +300,9 @@ method:GET
 
 ```
 {
-    "balance": "2033491.7041312056245936160000000000",
-    "firstTransactionTime": 1513586453,
-    "lastTransactionTime": 1546545718
+    "balance": "2033491.7041312056245936160000000000", // 余额
+    "firstTransactionTime": 1513586453, // 第一次交易时间戳
+    "lastTransactionTime": 1546545718 // 最后一次交易时间戳
 }
 ```
 
@@ -317,10 +322,10 @@ method:GET
 ```
 [
     {
-        "txnCount": "133398.832736",
-        "newAddressCount": 136,
-        "activeAddressCount": 944,
-        "timestamp": 1545091200
+        "txnCount": "133398.832736", //交易量
+        "newAddressCount": 136, //新增地址
+        "activeAddressCount": 944, //活跃地址
+        "timestamp": 1545091200 // 时间戳
     },
     {
         "txnCount": "228045.661960",
@@ -329,4 +334,111 @@ method:GET
         "timestamp": 1545177600
     }
 ]
+```
+
+### 最新区块高度
+
+```
+url: {host}/api/v1/btc/latest_block_height
+method:GET 
+```
+
+**返回示例**
+
+```
+{
+    "result": 560705 // 区块高度
+}
+```
+
+### 根据区块高度查区块信息
+
+```
+url: {host}/api/v1/btc/block
+method:GET 
+```
+
+**上传参数**
+
+- height // 区块高度
+
+**返回示例**
+
+```
+{
+    "hash": "0000000000000000000991af7b179071eacd86b4c1e7d05fb8df0790facba842", // 区块hash
+    "height": 560598, // 区块高度
+    "version": "536870912", // 版本
+    "prevHash": "00000000000000000020245866590c618cbf8c145691465df8f5e73295c0b9d2", // 前一个区块的hash
+    "merkleRoot": "c8a025098570ac2f8b0f17342763e889b96077bbd3c6bf02477d5de93ed4cb43", // merkle根
+    "blockTime": 1548756981, // 报块时间
+    "blockBits": "17306835", // 区块比特
+    "nonce": "2751944939", // 随机数
+    "txnCount": 2174, // 交易总数
+    "strippedSize": 911235, // 净大小
+    "blockSize": 1259567, // 区块大小
+    "blockWeight": 3993272, // 区块重量
+    "medianTime": 1548754905, // 播报时间
+    "difficulty": "5814661935891.805", // 难度
+    "chainWork": "000000000000000000000000000000000000000004e38d4c084777fc011bbbe6", // 总工作量
+    "txHashes": [
+        "8f044ba37d07f1f3fda5dacce50b32487c6340fc4558d89c3a99480abb696eb5",
+        "6683cc365dd01110bc57c2aceb8877539b6414d0278ebc1228fb58cf0009efec"
+    ], // 交易hash数组
+    "vinCount": 5506, // 转入总量
+    "voutCount": 7306, // 转出总量
+    "miner": "bc1qjl8uwezzlech723lpnyuza0h2cdkvxvh54v3dn", // 挖矿地址
+    "reward": 1275652367 // 奖励
+}
+```
+
+### 查询交易信息
+
+```
+url: {host}/api/v1/btc/txn
+method:GET 
+```
+
+**上传参数**
+
+- id // 交易hash
+
+**返回示例**
+
+```
+{
+    "vin": [
+        {
+            "addresses": [], // 地址
+            "value": 0, // 数量
+            "coinbase": "03e68d0841d7141108b8fcae41d7141107b732332f4254432e544f502ffabe6d6db76a8cc4d3765fb01a6d0efa5dffe57873ef70f0b71cdda074bc90a37760a5d88000000000000000fa006511ce40000000000000",
+            "type": "" // 类型
+        }
+    ], // 转入方
+    "vout": [
+        {
+            "addresses": [
+                "1Hz96kJKF2HLPGY15JWLB5m9qGNxvt8tHJ"
+            ],
+            "value": 1251685905,
+            "type": "pubkeyhash"
+        },
+        {
+            "addresses": [],
+            "value": 0,
+            "type": "nulldata"
+        }
+    ],
+    "blockHash": "00000000000000000027994fc946f09af421261770f2370070717a0fd6703f8a", // 区块hash
+    "blockHeight": 560614, // 区块高度
+    "blockTime": 1548764190, // 报块时间
+    "txHash": "5b8812e45e3239df7244f61166adfe0773281811a6798b316f77410424793b23", // 交易hash
+    "txVersion": 1, // 交易版本
+    "lockTime": 0,
+    "txWitnessHash": "e1d7cce47511ddc02331c0527266c8e5381c1ed9e140778da96661200a490735", // 交易见证方hash
+    "txSize": 253, // 交易大小
+    "txVSize": 226, // 交易净大小
+    "vinCount": 1, // 转入总量
+    "voutCount": 2 // 转出总量
+}
 ```
