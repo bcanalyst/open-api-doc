@@ -336,10 +336,10 @@ method:GET
 ]
 ```
 
-### 最新区块高度
+### 最新区块
 
 ```
-url: {host}/api/v1/btc/latest_block_height
+url: {host}/api/v1/btc/latest_block
 method:GET 
 ```
 
@@ -347,7 +347,26 @@ method:GET
 
 ```
 {
-    "result": 560705 // 区块高度
+    "hash": "0000000000000000000991af7b179071eacd86b4c1e7d05fb8df0790facba842", // 区块hash
+    "height": 560598, // 区块高度
+    "version": "536870912", // 版本
+    "prevHash": "00000000000000000020245866590c618cbf8c145691465df8f5e73295c0b9d2", // 前一个区块的hash
+    "merkleRoot": "c8a025098570ac2f8b0f17342763e889b96077bbd3c6bf02477d5de93ed4cb43", // merkle根
+    "blockTime": 1548756981, // 报块时间
+    "blockBits": "17306835", // 区块比特
+    "nonce": "2751944939", // 随机数
+    "txnCount": 2174, // 交易总数
+    "strippedSize": 911235, // 净大小
+    "blockSize": 1259567, // 区块大小
+    "blockWeight": 3993272, // 区块重量
+    "medianTime": 1548754905, // 播报时间
+    "difficulty": "5814661935891.805", // 难度
+    "chainWork": "000000000000000000000000000000000000000004e38d4c084777fc011bbbe6", // 总工作量
+    "txHashes": null, // 交易hash数组
+    "vinCount": 5506, // 转入总量
+    "voutCount": 7306, // 转出总量
+    "miner": "bc1qjl8uwezzlech723lpnyuza0h2cdkvxvh54v3dn", // 挖矿地址
+    "reward": 1275652367 // 奖励
 }
 ```
 
