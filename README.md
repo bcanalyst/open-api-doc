@@ -461,3 +461,37 @@ method:GET
     "voutCount": 2 // 转出总量
 }
 ```
+
+### 搜索代币补全
+
+```
+url: {host}/api/v1/search/tips
+method:GET 
+```
+
+**上传参数**
+
+- search // 代币名
+
+**返回示例**
+
+```
+ [
+        {
+            "name": "Ethereum",   // 代币名称
+            "key": "ethereum",    // 唯一标识
+            "type": "pbc",       // 类型
+            "symbol": "ETH",     // 简称
+            "cnName": "以太坊",  // 中文名
+            "token": ""          // 合约地址
+        },
+        {
+            "name": "ETHB",
+            "key": "ethb",
+            "type": "other",
+            "symbol": "ETHB",
+            "cnName": "",
+            "token": ""
+        }
+    ]
+```
